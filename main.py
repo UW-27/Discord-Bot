@@ -41,6 +41,7 @@ intro_chat = 975219722989744128
                 OptionChoice("Civil Engineering", "Civil Engineering"),
                 OptionChoice("Chemical Engineering", "Chemical Engineering"),
                 OptionChoice("Architectural Engineering", "Architectural Engineering"),
+                OptionChoice("Mechatronics Engineering", "Mechatronics Engineering"),
                 OptionChoice("Nanotechnology Engineering", "Nanotechnology Engineering"),
                 OptionChoice("Environmental Engineering", "Environmental Engineering"),
                 OptionChoice("CFM", "CFM"),
@@ -49,6 +50,7 @@ intro_chat = 975219722989744128
                 OptionChoice("Physics", "Physics"),
                 OptionChoice("Psychology", "Psychology"),
                 OptionChoice("Economics", "Economics"),
+                OptionChoice("FARM", "FARM"),
                 OptionChoice("Other", "Other")
             ],
         ),
@@ -102,6 +104,7 @@ async def verify(ctx, name, program, about, year, instagram="N/A", linkedin="N/A
     embed.add_field(name="Instagram", value=instagram, inline=True)
     embed.add_field(name="Github", value=github, inline=True)
     embed.add_field(name="Other", value=other, inline=True)
+    embed.set_footer(text=str(ctx.author.name))
 
     # if program is not a role then create role 
     if program not in [role.name for role in ctx.guild.roles]:
@@ -109,13 +112,7 @@ async def verify(ctx, name, program, about, year, instagram="N/A", linkedin="N/A
         # get role by name
         role = discord.utils.get(ctx.guild.roles, name=program)
         await ctx.author.add_roles(role)
-        # await ctx.guild.create_category(name=program)
-        # category = discord.utils.get(ctx.guild.categories, name=program)
 
-        # await ctx.guild.create_text_channel(name="general", category=category)
-        # await ctx.guild.create_voice_channel(name="general", category=category)
-        # await ctx.guild.create_text_channel(name="general-announcements", category=category)
-        # await ctx.guild.create_text_channel(name="course-selection", category=category)
         try:
             await ctx.author.edit(nick=name)
         except:
