@@ -104,7 +104,7 @@ async def verify(ctx, name, program, about, year, instagram="N/A", linkedin="N/A
     embed.add_field(name="Instagram", value=instagram, inline=True)
     embed.add_field(name="Github", value=github, inline=True)
     embed.add_field(name="Other", value=other, inline=True)
-    embed.set_footer(text=str(ctx.author.name))
+    embed.set_footer(text="@" + str(ctx.author.name))
 
     # if program is not a role then create role 
     if program not in [role.name for role in ctx.guild.roles]:
